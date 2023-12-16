@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  fname          String
+  lname          String
+  email          String   @unique
+  hashedPassword String
+  country        String
+  company        String
+  emailVerified  DateTime?
+  image          String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  bank           Bank?
+
+}
+
+
+
+model Bank{
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  nairabalance   Int @default(0)
+  dollarbalance  Int @default(0)
+  userId         String @db.ObjectId  @unique
+  user           User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions   Transactions[]
+}
+
+model Transactions{
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  amount         Int
+  bankId         String  @db.ObjectId
+  bank           Bank @relation(fields: [bankId], references: [id], onDelete: Cascade)
+}
+
+model Campaign{
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  instagram      String
+  adtext         Adtext[]
+  rewrite        Boolean @default(false)
+  pin            Int
+  price          Int
+  dailypins      Int?
+}
+
+model Adtext{
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  campaignId         String  @db.ObjectId
+  campaign       Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+}
+
+enum Category {
+  FASHION
+  MUSIC
+  SPORTS
+  ART
+  CARS 
+  FOOTBALL
+  LIFESTYLE
+  SHOPPING
+}
