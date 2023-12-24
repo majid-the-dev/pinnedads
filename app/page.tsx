@@ -14,8 +14,8 @@ export default function Home() {
       </div>
       <div className='flex flex-col items-center justify-start gap-8 border border-black rounded-md p-16'>
         <h1>PinnedAds Influencer</h1>
-        <button className='bg-black px-3 py-1 text-white rounded-md'>Sign Up</button>
-        <button className='bg-black px-3 py-1 text-white rounded-md'>Login</button>
+        <Link href='/influencer-signup' className='bg-black px-3 py-1 text-white rounded-md'>Sign Up</Link>
+        <Link href='/influencer-login' className='bg-black px-3 py-1 text-white rounded-md'>Login</Link>
       </div>
     </main>
     </div>

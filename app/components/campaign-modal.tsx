@@ -6,10 +6,16 @@ import Modal from "./Modal"
 import Heading from "./Head";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { SafeUser } from "@/types";
+
+interface UserProps {
+  currentUser?: SafeUser | null;
+}
 
 
-
-const CampaignModal = () => {
+const CampaignModal:React.FC<UserProps> = ({
+  currentUser
+}) => {
     const router = useRouter();
     const campaignModal = useCampaignModal();
 
@@ -40,7 +46,7 @@ const CampaignModal = () => {
  
     function selectedCurrency(){
         if(isSelected){
-          router.push('/advertiser/naira')
+          router.push(`/advertiser/naira/${currentUser?.id}`)
           setIsSelected(false)
           setIsSelected2(false)
         } else if(isSelected2){

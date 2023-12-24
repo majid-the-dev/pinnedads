@@ -4,10 +4,30 @@ import { NextResponse } from 'next/server'
 
 export async function POST(request: Request): Promise<void | Response> {
     const body = await request.json();
-    const { fname, lname, email, password, company, country } = body;
+    const { fname, lname, email, password, cpassword, company, country, city } = body;
 
-    if(!fname || !email || !password || !lname || !company || !country) {
-        return new NextResponse('Missing Fields', { status: 400 })
+    if(!fname) {
+        return new NextResponse('Name is required', { status: 400 })
+    }
+
+    if(!lname) {
+        return new NextResponse('Last name is required', { status: 400 })
+    }
+
+    if(!email){
+        return new NextResponse('Mail is required', { status: 400 })
+    }
+
+    if(!password){
+        return new NextResponse('password is required', { status: 400 })
+    }
+
+    if(!country){
+        return new NextResponse('Country is required', { status: 400 })
+    }
+
+    if(!company){
+        return new NextResponse('Company is required', { status: 400 })
     }
 
     if(typeof country !== 'string'){
@@ -40,6 +60,6 @@ export async function POST(request: Request): Promise<void | Response> {
         },
       });
 
-    return NextResponse.json(user);
+    return NextResponse.json(body);
 
 }

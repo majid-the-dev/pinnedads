@@ -23,9 +23,60 @@ model User {
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
   bank           Bank?
+  campaign       Campaign[]
 
 }
 
+model Influencer {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  fname          String
+  lname          String
+  instagram      String
+  email          String   @unique
+  hashedPassword String
+  country        String
+  emailVerified  DateTime?
+  image          String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  pay            Pay?
+  pin            Pin[]
+  accounts       Account[]
+
+}
+
+model Admin {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  fname          String
+  lname          String
+  email          String   @unique
+  hashedPassword String
+  emailVerified  DateTime?
+  image          String?
+  admin          Boolean @default(false)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+}
+
+model Account {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  type String
+  provider String
+  providerAccountId String
+  refresh_token String? @db.String
+  access_token String? @db.String
+  expires_at Int?
+  token_type String?
+  scope String?
+  id_token String? @db.String
+  session_state String?
+
+  user Influencer @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
 
 
 model Bank{
@@ -37,6 +88,15 @@ model Bank{
   transactions   Transactions[]
 }
 
+model Pay{
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  nairabalance   Int @default(0)
+  dollarbalance  Int @default(0)
+  userId         String @db.ObjectId  @unique
+  influencer     Influencer @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions   Transactionsi[]
+}
+
 model Transactions{
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
   amount         Int
@@ -44,21 +104,52 @@ model Transactions{
   bank           Bank @relation(fields: [bankId], references: [id], onDelete: Cascade)
 }
 
+model Transactionsi{
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  amount         Int
+  payId         String  @db.ObjectId
+  pay           Pay @relation(fields: [payId], references: [id], onDelete: Cascade)
+}
+
 model Campaign{
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
   name           String
   instagram      String
-  adtext         Adtext[]
+  adtext         Adtext?
   rewrite        Boolean @default(false)
-  pin            Int
+  pinprice       Int
+  pins           Int
   price          Int
-  dailypins      Int?
+  daily          Int?
+  pinned         Int @default(0)
+  audience       String
+  userId         String  @db.ObjectId
+  user           User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  links          Pin[]
+  active         Boolean @default(false)
 }
+
+model Pin{
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  influencerId   String  @db.ObjectId
+  influencer     Influencer @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  campaignId     String  @db.ObjectId
+  campaign       Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  completed      Boolean @default(false)
+  follower       Int @default(500)
+  link           String
+  pinnedAt      DateTime  @default(now())
+}
+
 
 model Adtext{
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
-  campaignId         String  @db.ObjectId
+  campaignId     String  @db.ObjectId @unique
   campaign       Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  adtext1        String
+  adtext2        String?
+  adtext3        String?
+  adtext4        String?
 }
 
 enum Category {
