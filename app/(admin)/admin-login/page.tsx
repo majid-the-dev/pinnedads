@@ -36,7 +36,7 @@ const LoginPage = () => {
                         toast.success('Logged in successfully!')
                         setData({email: '',
                         password: '', userType: 'advertiser'})
-                        router.push(`/advertiser`)
+                        router.push(`/admin`)
                     }
                 } )
             }
@@ -55,7 +55,7 @@ const LoginPage = () => {
         <h1>Login</h1>
             <p className="mt-2 text-center text-sm text-gray-600 ">
             Dont have an account yet? -
-            <Link href='/advertiser-signup' className="font-medium hover:text-purple-500">
+            <Link href='/admin-signup' className="font-medium hover:text-purple-500">
                 Signup
             </Link>
             </p>
@@ -80,7 +80,7 @@ const LoginPage = () => {
           className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
           placeholder="Password"
         />
-        <input type="hidden" name="userType" value="advertiser" />
+        <input type="hidden" name="userType" value="admin" />
           <Link href='/forgot-password' className="text-xs font-medium text-black hover:text-purple-500">
                 Forgot Password?
             </Link>

@@ -143,7 +143,7 @@ const page = ({ params }: { params: IParams}) => {
     setIsLoading(true)
     try {
         // Call your POST function with form data
-        const response = await axios.post(`/api/${params.userId}/create-campaign`, data);
+        const response = await axios.post(`/api/create-campaign/${params.userId}`, data);
         toast.success("Campaign has been created!");
         setData({name: "",instagram: "",adtext: "",adtext1: "",adtext2: "",adtext3: "",rewrite:false, pinprice: null,pins: null, price: 0, daily: null, audience: ""})
         router.push(`/advertiser`)

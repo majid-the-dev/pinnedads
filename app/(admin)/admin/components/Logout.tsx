@@ -3,19 +3,24 @@
 import { signOut } from "next-auth/react";
 import { IoIosLogOut } from "react-icons/io";
 import { useRouter } from "next/navigation";
+import { useSession } from 'next-auth/react'
+import { useEffect } from "react";
 
 const Logout = () => {
 
   const router = useRouter()
-
-  function logOut(){
-    signOut()
-    router.push(`/advertiser-login`)
-  }
+  const session = useSession()
+  
+  const handleSignOut = async () => {
+    await signOut();
+    // Redirect to sign-in page
+    router.push('/admin-login');
+  };
+  
 
   return (
     <div
-      onClick={logOut}
+      onClick={handleSignOut}
       className="pl-14 w-full py-4 flex items-center gap-3 cursor-pointer"
     >
       <h1>LOGOUT</h1>

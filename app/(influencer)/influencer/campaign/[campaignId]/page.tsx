@@ -1,4 +1,3 @@
-import getCampaignsById from '@/actions/get-campaign-by-id';
 import React, { useState } from 'react'
 import { DashNav } from '../../components/DashboardNav';
 import axios from 'axios';
@@ -6,6 +5,7 @@ import Form from './components/Form';
 import CopySet from './components/Copy';
 import getCurrentInfluencer from '@/actions/get-current-influencer';
 import Link from 'next/link';
+import getCampaignsByParams from '@/actions/get-campaign-by-params';
 
 interface IParams {
     campaignId?: string;
@@ -13,7 +13,7 @@ interface IParams {
 
 const page = async ({ params }: { params: IParams }) => {
 
-    const campaign = await getCampaignsById(params)
+    const campaign = await getCampaignsByParams(params)
     const influencer = await getCurrentInfluencer()
     
 

@@ -71,7 +71,29 @@ export const authOptions: AuthOptions = {
                 }
 
                 return user;
-                }
+                } else if (credentials.userType === 'admin'){
+                    // check to see if user exists
+               const user = await prisma.admin.findUnique({
+                   where: {
+                       email: credentials.email
+                   }
+               });
+
+               // if no user was found 
+               if (!user || !user?.hashedPassword) {
+                   throw new Error('No user found')
+               }
+
+               // check to see if password matches
+               const passwordMatch = await bcrypt.compare(credentials.password, user.hashedPassword)
+
+               // if password does not match
+               if (!passwordMatch) {
+                   throw new Error('Incorrect password')
+               }
+
+               return user;
+               }
                 throw new Error('Invalid user type');
             },
         }),  

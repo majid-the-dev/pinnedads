@@ -5,8 +5,11 @@ import toast from "react-hot-toast";
 import { countries } from "@/public/data/country-list";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const page = () => {
+
+  const router = useRouter()
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({
@@ -25,12 +28,6 @@ const page = () => {
     if (e.target.id === 'cpassword') {
         setPasswordMatch(data.password === e.target.value);
       }
-
-      // if (data.country === '') {
-      //   setIsLoading(true);
-      // }else{
-      //   setIsLoading(false)
-      // }
   };
 
   const registerUser = async (e: { preventDefault: () => void; }) => {
@@ -38,14 +35,14 @@ const page = () => {
     setIsLoading(true)
     try {
         // Call your POST function with form data
-        const response = await axios.post('/api/register', data);
+        const response = await axios.post('/api/register-admin', data);
         toast.success("User has been registered!");
         setData({fname: "",lname: "",email: "", password: "",cpassword: ""})
       } catch (error) {
         console.error('Error submitting form:', error);
         toast.error(`Something went wrong. ${error}`);
       }
-      // router.push('/login')
+      router.push('/admin-login')
       setIsLoading(false)
  }
 

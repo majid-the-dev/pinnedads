@@ -4,10 +4,11 @@ interface IParams {
    campaignId?: string;
 }
 
-export default async function getCampaignById(
-  campaignId?: string
+export default async function getCampaignsByParams(
+  params: IParams
 ) {
   try {
+    const { campaignId } = params;
 
     const campaign = await prisma.campaign.findUnique({
       where: {

@@ -1,7 +1,7 @@
-import getCampaignsById from '@/actions/get-campaign-by-id';
 import React from 'react'
 import { DashNav } from '../../components/DashboardNav';
 import Link from 'next/link';
+import getCampaignsByParams from '@/actions/get-campaign-by-params';
 
 interface IParams {
     campaignId?: string;
@@ -9,7 +9,7 @@ interface IParams {
 
 const page = async ({ params }: { params: IParams }) => {
 
-    const campaign = await getCampaignsById(params)
+    const campaign = await getCampaignsByParams(params)
 
     if (!campaign) {
         return (
