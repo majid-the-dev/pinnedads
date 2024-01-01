@@ -18,8 +18,8 @@ const LoginPage = () => {
 
             useEffect(() => {
               if (session?.status === 'authenticated') {
-                 router.push(`/influencer`) 
-              }
+                router.push(`/influencer`) 
+             }
           })
 
             const authUser = async (e: any) => {

@@ -1,6 +1,9 @@
-import React from 'react'
+import getCurrentInfluencer from '@/actions/get-current-influencer';
 
-const Settings = () => {
+const Settings = async () => {
+
+  const currentUser = await getCurrentInfluencer();
+
   return (
     <div>Settings</div>
   )

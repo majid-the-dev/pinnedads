@@ -35,6 +35,7 @@ model Influencer {
   email          String   @unique
   hashedPassword String
   country        String
+  instaVerified  Boolean @default(false)
   emailVerified  DateTime?
   image          String?
   createdAt      DateTime  @default(now())
@@ -126,7 +127,7 @@ model Campaign{
   userId         String  @db.ObjectId
   user           User @relation(fields: [userId], references: [id], onDelete: Cascade)
   links          Pin[]
-  active         Boolean @default(false)
+  active         Boolean @default(true)
 }
 
 model Pin{
@@ -135,10 +136,12 @@ model Pin{
   influencer     Influencer @relation(fields: [influencerId], references: [id], onDelete: Cascade)
   campaignId     String  @db.ObjectId
   campaign       Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
-  completed      Boolean @default(false)
+  reviewed       Boolean @default(false)
   follower       Int @default(500)
   link           String
-  pinnedAt      DateTime  @default(now())
+  pinnedAt       DateTime  @default(now())
+  status         String @default("pending")
+  message        String? 
 }
 
 

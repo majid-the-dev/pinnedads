@@ -10,7 +10,11 @@ export default async function getCampaigns() {
 
   try {
     const session = await getSession();
-    const campaigns = await prismadb.campaign.findMany();
+    const campaigns = await prismadb.campaign.findMany({
+      where: {
+        active: true
+      }
+    });
 
     if (!session) {
       return null;

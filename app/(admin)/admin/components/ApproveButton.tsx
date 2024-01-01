@@ -6,20 +6,22 @@ import toast from 'react-hot-toast';
 import { Campaign, Pin } from "@prisma/client";
 import { useRouter } from 'next/navigation';
 
-interface CampaignCardProps {
+interface AppButtonProps {
     data: Pin;
+    campaign: Campaign;
   }
 
-const Button: React.FC<CampaignCardProps> = ({ data })  => {
+const AppButton: React.FC<AppButtonProps> = ({ data, campaign })  => {
 
   const router = useRouter();
   const dat = {
-    approved: true
+    message: "accepted",
+    status: "accepted"
     }
 
     const onSubmit = async () => {
         try {
-          await axios.patch(`/api/${data.id}`, dat);
+          await axios.patch(`/api/${data.id}/${campaign.id}`, dat);
           router.refresh();
           router.push(`/admin`);
           toast.success("Approved");
@@ -34,4 +36,4 @@ const Button: React.FC<CampaignCardProps> = ({ data })  => {
     )
 }
 
-export default Button
+export default AppButton
