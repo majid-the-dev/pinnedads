@@ -7,9 +7,6 @@ import React, { useCallback, useState } from "react";
 import useCampaignModal from "@/hooks/useCampaignModal";
 
 export function DashNav() {
-    const pathname = usePathname();
-    const [open, setOpen] = useState(false);
-    const [loading, setLoading] = useState(false);
     const campaignModal = useCampaignModal();
 
 

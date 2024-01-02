@@ -36,6 +36,7 @@ model Influencer {
   hashedPassword String
   country        String
   instaVerified  Boolean @default(false)
+  link           String?
   emailVerified  DateTime?
   image          String?
   createdAt      DateTime  @default(now())
