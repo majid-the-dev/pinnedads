@@ -32,6 +32,7 @@ model Influencer {
   fname          String
   lname          String
   instagram      String
+  followers      Int?
   email          String   @unique
   hashedPassword String
   country        String
