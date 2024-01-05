@@ -27,7 +27,8 @@ export default async function getPendingInfluencer() {
     
         const influencers = await prisma.influencer.findMany({
           where: {
-            instaVerified: false
+            instaVerified: false,
+            linkSub: true
           }
         });
     

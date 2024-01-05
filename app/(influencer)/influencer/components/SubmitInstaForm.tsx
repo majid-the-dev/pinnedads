@@ -25,7 +25,7 @@ const SubmitInstaForm: React.FC<SubmitInstaFormProps> = ({ influencer })=> {
       setIsLoading(true)
       try {
           // Call your POST function with form data
-          await axios.post(`/api/influencer/${influencerId}`, data);
+          await axios.patch(`/api/influencer/${influencerId}`, data);
           toast.success("Instagram is under review");
           setData({link:""})
         } catch (error) {

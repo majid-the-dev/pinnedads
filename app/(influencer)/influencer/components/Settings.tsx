@@ -18,6 +18,15 @@ const Settings = async () => {
     );
   }
 
+  if(currentUser?.status == "rejected"){
+    return(
+      <div className='flex flex-col items-center justify-center gap-5 h-full'>
+        <h1 className='text-red-400'>Your verification was rejected please Pin a post to your Instagram and submit the link</h1>
+        <SubmitInstaForm influencer={currentUser}/>
+      </div>
+    )
+  }
+
   if(!currentUser?.instaVerified){
     return(
       <div className='flex flex-col items-center justify-center gap-5 h-full'>

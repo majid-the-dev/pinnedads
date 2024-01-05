@@ -21,6 +21,7 @@ export async function PATCH(
         },
         data: {
           link: link,
+          linkSub: true
         }
       });
 
