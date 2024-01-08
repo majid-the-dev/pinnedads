@@ -11,6 +11,14 @@ const DashBoard = async() => {
 
   const currentUser = await getCurrentInfluencer();
 
+  if(currentUser?.linkSub && !currentUser?.instaVerified){
+    return(
+      <div className='flex flex-col items-center justify-center gap-5 h-full text-orange-400'>
+        Verification in progress
+      </div>
+    )
+  }
+
   if(!currentUser?.instaVerified){
     return(
       <div className='flex flex-col items-center justify-center gap-5 h-full'>Please verify your Instagram

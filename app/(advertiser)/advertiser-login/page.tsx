@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { signIn, useSession } from 'next-auth/react'
+import { signIn, useSession, getSession } from 'next-auth/react'
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -16,11 +16,23 @@ const LoginPage = () => {
             userType: 'advertiser'
             })
 
-            useEffect(() => {
-              if (session?.status === 'authenticated') {
-                 router.push(`/advertiser`) 
-              }
-          })
+          //   useEffect(() => {
+          //     if (session?.status === 'authenticated') {
+          //        router.push(`/advertiser`) 
+          //     }
+          // })
+          useEffect(() => {
+            const fetchSession = async () => {
+              const session = await getSession();
+              // Handle the session data accordingly
+              if (session) {
+                       router.push(`/advertiser`) 
+                     }
+              console.log(session);
+            };
+        
+            fetchSession();
+          }, []);
 
             const authUser = async (e: any) => {
                 e.preventDefault()
@@ -51,7 +63,7 @@ const LoginPage = () => {
     <div className="p-16 flex flex-col items-center justify-center">
       <Link href='/'>Pinned Ads</Link>
         <form onSubmit={authUser} className="w-full lg:w-[50%] flex flex-col items-center justify-start gap-8">
-        <div className="">
+        <div className="flex flex-col items-center justify-start gap-4">
         <h1>Login</h1>
             <p className="mt-2 text-center text-sm text-gray-600 ">
             Dont have an account yet? -

@@ -1,23 +1,24 @@
 "use client";
 
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { IoIosLogOut } from "react-icons/io";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const Logout = () => {
 
   const router = useRouter()
-
-  function logOut(){
-    signOut()
-    router.push(`/advertiser-login`)
-  }
+  const { data: session } = useSession()
 
   const handleSignOut = async () => {
-    signOut();
-    // Redirect to sign-in page
+    // Call the signOut function from NextAuth.js
+    await signOut({ redirect: false, callbackUrl: '/' });
+
+    // Clear any client-side storage where session data might be stored
+    localStorage.removeItem('next-auth.session-token'); // Example: using localStorage
     router.push('/advertiser-login');
   };
+
 
   return (
     <div

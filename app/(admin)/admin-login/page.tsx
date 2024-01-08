@@ -51,7 +51,7 @@ const LoginPage = () => {
     <div className="p-16 flex flex-col items-center justify-center">
       <Link href='/'>Pinned Ads</Link>
         <form onSubmit={authUser} className="w-full lg:w-[50%] flex flex-col items-center justify-start gap-8">
-        <div className="">
+        <div className="flex flex-col items-center justify-start gap-3">
         <h1>Login</h1>
             <p className="mt-2 text-center text-sm text-gray-600 ">
             Dont have an account yet? -

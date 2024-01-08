@@ -9,7 +9,7 @@ const PendingPins: React.FC<PinProps> = ({ pins }) =>  {
 
     if(!pins){
         return(
-          <div className="flex flex-col items-center justify-center h-[100vh] gap-6">
+          <div className="flex flex-col items-center justify-center gap-6">
           <div>No Pending Pins</div>
           </div>)
       }

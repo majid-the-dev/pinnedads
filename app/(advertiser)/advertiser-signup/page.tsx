@@ -4,9 +4,11 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { countries } from "@/public/data/country-list";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const page = () => {
+  const router = useRouter();
   const [selectedOption, setSelectedOption] = useState('');
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -52,7 +54,7 @@ const page = () => {
         console.error('Error submitting form:', error);
         toast.error(`Something went wrong. ${error}`);
       }
-      // router.push('/login')
+      router.push('/advertiser-login')
       setIsLoading(false)
  }
 

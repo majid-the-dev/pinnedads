@@ -29,11 +29,11 @@ const page = async({ searchParams }: { searchParams: { [key: string]: string | s
     <div className='w-full h-full grid grid-cols-8 items-start'>
         <div className='h-full col-span-2 flex flex-col items-start justify-between border border-black'>
             <ul className='h-full flex flex-col items-start justify-start w-full'>
-                <Link href={`/advertiser?p=dashboard`} scroll={false} className='border-b border-black pl-14 w-full py-4'>DASHBOARD</Link>
-                <Link href={`/advertiser?p=pending`} scroll={false} className='border-b border-black pl-14 w-full py-4'>PENDING PINS</Link>
-                <Link href={`/advertiser?p=running`} scroll={false} className='border-b border-black pl-14 w-full py-4'>RUNNING PINS</Link>
-                <Link href={`/advertiser?p=verify`} scroll={false} className='border-b border-black pl-14 w-full py-4'>VERIFY INSTAGRAM</Link>
-                <Link href={`/advertiser?p=settings`} scroll={false} className='border-b border-black pl-14 w-full py-4'>TOPUP ACCOUNT</Link>
+                <Link href={`/admin?p=dashboard`} scroll={false} className='border-b border-black pl-14 w-full py-4'>DASHBOARD</Link>
+                <Link href={`/admin?p=pending`} scroll={false} className='border-b border-black pl-14 w-full py-4'>PENDING PINS</Link>
+                <Link href={`/admin?p=running`} scroll={false} className='border-b border-black pl-14 w-full py-4'>RUNNING PINS</Link>
+                <Link href={`/admin?p=verify`} scroll={false} className='border-b border-black pl-14 w-full py-4'>VERIFY INSTAGRAM</Link>
+                <Link href={`/admin?p=settings`} scroll={false} className='border-b border-black pl-14 w-full py-4'>TOPUP ACCOUNT</Link>
             </ul>
             <Logout/>
         </div>

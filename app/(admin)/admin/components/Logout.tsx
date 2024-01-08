@@ -10,10 +10,13 @@ const Logout = () => {
 
   const router = useRouter()
   const session = useSession()
-  
+
   const handleSignOut = async () => {
-    await signOut();
-    // Redirect to sign-in page
+    // Call the signOut function from NextAuth.js
+    await signOut({ redirect: false, callbackUrl: '/' });
+
+    // Clear any client-side storage where session data might be stored
+    localStorage.removeItem('next-auth.session-token'); // Example: using localStorage
     router.push('/admin-login');
   };
   
