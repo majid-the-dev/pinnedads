@@ -17,7 +17,7 @@ const page = ({ searchParams }: { searchParams: { [key: string]: string | string
     <div className='w-full h-full grid grid-cols-8 items-start'>
         <div className='h-full col-span-2 flex flex-col items-start justify-between border border-black'>
             <ul className='h-full flex flex-col items-start justify-start w-full'>
-                <Link href={`/influencer?p=dashboard`} scroll={false} className='border-b border-black pl-14 w-full py-4'>DASHBOARD</Link>
+                <Link href={`/influencer?p=dashboard`} scroll={false} className='border-b border-black pl-14 w-full py-4'>SUPER DASHBOARD</Link>
                 <Link href={`/influencer?p=settings`} scroll={false} className='border-b border-black pl-14 w-full py-4'>ACCOUNT SETTINGS</Link>
                 <Link href={`/influencer?p=admin`} scroll={false} className='border-b border-black pl-14 w-full py-4'>ADMIN</Link>
             </ul>

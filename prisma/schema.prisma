@@ -146,6 +146,7 @@ model Pin{
   pinnedAt       DateTime  @default(now())
   status         String @default("pending")
   message        String? 
+  instagram      String
 }
 
 

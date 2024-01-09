@@ -28,7 +28,7 @@ export default async function getApprovedPins() {
     
         const pins = await prisma.pin.findMany({
           where: {
-            status: "approved"
+            status: "accepted"
           }
         });
     

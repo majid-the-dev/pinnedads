@@ -1,10 +1,12 @@
 import { GoDotFill } from "react-icons/go";
 import CampaignCard from "./CampaignCard";
 import getCampaigns from "@/actions/get-campaigns";
+import getCurrentInfluencer from '@/actions/get-current-influencer';
 
 const Campaigns = async() => {
 
   const campaigns = await getCampaigns();
+  const influencer = await getCurrentInfluencer()
 
   if(!campaigns){
     return(
@@ -23,6 +25,8 @@ const Campaigns = async() => {
           <CampaignCard
             key={campaign.id}
             data={campaign}
+            influencer={influencer}
+            pin={campaign.links}
           />
         ))}
     </div>    

@@ -34,13 +34,12 @@ export async function POST(
         throw new Error('Influencer does not exist')
     }
 
-
-
     const pin = await prisma.pin.create({
         data: {
             influencerId: params.influencerId,
             campaignId: params.campaignId,
-            link: link
+            link: link,
+            instagram: influencer.instagram
         }
     });
 

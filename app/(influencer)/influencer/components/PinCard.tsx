@@ -26,7 +26,7 @@ const PinCard: React.FC<PinCardProps> = ({ data }) => {
     <Link href={`/influencer/campaign/${data.id}`} className="w-full flex items-center justify-between border border-black rounded-md px-3 py-2">
       <div className="flex flex-col px-2 py-1">
       <h1 className="text-xs">{link}</h1>
-      <p className=" text-xs">Approved:{data?.completed === true ? 'True' : 'False'}</p>
+      <p className=" text-xs">Approved:{data?.status === "accepted" ? 'True' : 'False'}</p>
       </div>
       <button className="bg-black rounded-lg p-2 text-white"><GoPin/></button>
     </Link>

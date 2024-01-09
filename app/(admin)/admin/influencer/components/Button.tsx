@@ -15,14 +15,13 @@ const Button: React.FC<ButtonProps> = ({ influencer }) => {
   const router = useRouter();
   const [data, setData] = useState({followers: 500, status: "accepted"});
   const rej = {
-    followers: 500,
     status: "rejected"
     }
   
 
     const onReject = async () => {
         try {
-          await axios.patch(`/api/admin/influencer/${influencer.id}`, rej);
+          await axios.patch(`/api/admin/influencer/${influencer.id}/reject`, rej);
           router.refresh();
           router.push(`/admin`);
           toast.success("Rejected");
@@ -34,7 +33,7 @@ const Button: React.FC<ButtonProps> = ({ influencer }) => {
 
   const onSubmit = async () => {
     try {
-      await axios.patch(`/api/admin/influencer/${influencer.id}`, data);
+      await axios.patch(`/api/admin/influencer/${influencer.id}/accept`, data);
       router.refresh();
       router.push(`/admin`);
       toast.success("Approved");
@@ -43,7 +42,7 @@ const Button: React.FC<ButtonProps> = ({ influencer }) => {
     } finally {
     }
   };
-  
+
   return (
     <form onSubmit={onSubmit} className="w-full lg:w-[50%] flex flex-col items-center justify-start gap-8">
     <input

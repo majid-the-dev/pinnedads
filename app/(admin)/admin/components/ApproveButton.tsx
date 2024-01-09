@@ -7,11 +7,11 @@ import { Campaign, Pin } from "@prisma/client";
 import { useRouter } from 'next/navigation';
 
 interface AppButtonProps {
-    data: Pin;
+    pin: Pin;
     campaign: Campaign;
   }
 
-const AppButton: React.FC<AppButtonProps> = ({ data, campaign })  => {
+const AppButton: React.FC<AppButtonProps> = ({ pin, campaign })  => {
 
   const router = useRouter();
   const dat = {
@@ -21,7 +21,7 @@ const AppButton: React.FC<AppButtonProps> = ({ data, campaign })  => {
 
     const onSubmit = async () => {
         try {
-          await axios.patch(`/api/${data.id}/${campaign.id}`, dat);
+          await axios.patch(`/api/${pin.id}/${campaign.id}`, dat);
           router.refresh();
           router.push(`/admin`);
           toast.success("Approved");

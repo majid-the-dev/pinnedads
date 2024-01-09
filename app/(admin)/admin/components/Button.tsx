@@ -60,7 +60,7 @@ const Button: React.FC<ButtonProps> = ({ pin, campaign })  => {
 
         {!isClicked? 
         <div className="flex items-center justify-center gap-5">
-        <DisButton data={pin} campaign={campaign} onClick={()=>setIsClicked(!isClicked)}/>  <AppButton data={pin} campaign={campaign}/>
+        <DisButton data={pin} campaign={campaign} onClick={()=>setIsClicked(!isClicked)}/>  <AppButton pin={pin} campaign={campaign}/>
         </div>: null}
         
        

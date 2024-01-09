@@ -41,7 +41,7 @@ export async function PATCH(
 
   if(status === "rejected"){
 
-    const number = campaign?.pinned == undefined? 0 : campaign?.pinned - 1
+    const number = campaign?.pinned == undefined? 0 : campaign?.pinned
   
       await prisma.campaign.update({
         where: {

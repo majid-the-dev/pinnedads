@@ -54,7 +54,7 @@ const page = async ({ params }: { params: IParams }) => {
         >
         {pin.link.slice(0,50)}</Link> 
         <CopySet data={pin.link}/></div>
-         <p className='text-sm text-green-400'>{pin.status}</p> 
+         <p className='text-sm text-orange-400'>{pin.status}</p> 
       </div>
       <div className='flex items-center justify-center gap-5'>
       <Button pin={pin} campaign={campaign}/>

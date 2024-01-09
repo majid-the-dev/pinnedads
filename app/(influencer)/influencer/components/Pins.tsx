@@ -16,7 +16,7 @@ const Pins = async () => {
 
   return (
     <div className='w-full flex flex-col flex-auto h-full items-start justify-start gap-4'>
-        <h1>popular audience categories</h1>
+        <h1>Pins</h1>
         <div className='w-full grid grid-cols-4 items-center gap-2'>
         {pins.map((pin: any) => (
             <PinCard
