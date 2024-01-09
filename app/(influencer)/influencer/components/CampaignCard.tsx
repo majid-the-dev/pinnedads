@@ -16,7 +16,6 @@ interface CampaignCardProps {
 const CampaignCard: React.FC<CampaignCardProps> = ({ data, influencer, pin }) => {
     
   const [isMounted, setIsMounted] = useState(false);
-  const [isTarget, setIsTarget] = useState(false);
   const isPresent = pin.some(link => link.instagram === influencer?.instagram);
   const target = pin.find(link => link.instagram === influencer?.instagram);
 
@@ -38,20 +37,17 @@ const CampaignCard: React.FC<CampaignCardProps> = ({ data, influencer, pin }) =>
       { label: 'month', seconds: 2592000 },
       { label: 'day', seconds: 86400 },
     ];
-  
-    for (const interval of intervals) {
-      const count = Math.floor(seconds / interval.seconds);
+    const count = Math.floor(seconds / 86400);
       if (count < 1) {
-        return interval.label === 'day' && count < 1; // Return true if less than a day
+        return true; // Return true if less than a day
       }
-    }
   
     return false; // Default return value
   }
   
   function displayPinnedAtTime(pinnedAt: Date): JSX.Element | null {
     if (timeAgoLessThanDay(pinnedAt)) {
-      return <p className="text-xs">Pinned today</p>;
+      return <p className="text-xs text-blue-400">You've pinned today</p>;
     }
     return null;
   }
@@ -62,7 +58,7 @@ const CampaignCard: React.FC<CampaignCardProps> = ({ data, influencer, pin }) =>
       <div className="flex flex-col px-2 py-1">
       <h1 className="font-semibold text-xl">{data?.name}</h1>
       <p className=" text-xs">@{data?.instagram}</p>
-      {isPresent? <p className="text-xs text-blue-400">pinned</p>: null}
+      {target && target.pinnedAt && displayPinnedAtTime(target.pinnedAt)}
       </div>
       <button className="bg-black rounded-lg p-2 text-white"><GoPin/></button>
     </Link>
