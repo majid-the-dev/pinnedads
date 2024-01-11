@@ -93,8 +93,8 @@ const page = ({ params }: { params: IParams}) => {
       dataset.push({ bottom: priceBottom, top: priceTop, fbottom: followerBottom, ftop: followerTop });
   
       // Update values for the next iteration
-      priceBottom += 200;  // Adjust this increment as needed
-      priceTop = priceBottom + 200;  // Assuming a constant difference between bottom and top
+      priceBottom += 100;  // Adjust this increment as needed
+      priceTop = priceBottom + 100;  // Assuming a constant difference between bottom and top
       followerBottom += 2000;
       followerTop = followerBottom + 2000;
       }
@@ -279,7 +279,7 @@ const page = ({ params }: { params: IParams}) => {
             <p className="text-red-500 text-xs">Value from 800 to 100,000</p>
           )}
           {pinValid && (
-            <p className="text-gray-300 text-xs">You get Instagram users with following range {price.fbottom} to {price.ftop}</p>
+            <p className="text-gray-300 text-xs">You get Instagram users with following range up to {price.ftop}</p>
           )}
         </div>
       <div className='mb-2 w-full flex flex-col items-start gap-2'>  
