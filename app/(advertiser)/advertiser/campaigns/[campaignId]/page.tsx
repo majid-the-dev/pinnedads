@@ -2,6 +2,7 @@ import React from 'react'
 import { DashNav } from '../../components/DashboardNav';
 import Link from 'next/link';
 import getCampaignsByParams from '@/actions/get-campaign-by-params';
+import CopySet from '@/app/(admin)/admin/components/Copy';
 
 interface IParams {
     campaignId?: string;
@@ -43,14 +44,16 @@ const page = async ({ params }: { params: IParams }) => {
           {campaign.pinned} out of {campaign.pins} pinned
         </p>
       </div>
-      <ul className='flex flex-col items-start justify-start gap-4 text-xs text-blue-600'>
+      <ul className='w-full flex flex-col items-start justify-start gap-4 text-xs text-blue-600'>
       {campaign.links.map((pin: any) => (
+        <li key={pin.id} className='w-full flex items-center justify-between'>
         <Link
           href={pin.link}
-          key={pin.id}
           className=''
         >
         {pin.completed === false? null: pin.link.slice(0,20)}</Link> 
+        <CopySet data={pin.link}/>
+        </li>
       ))}
       </ul>
         </div>
